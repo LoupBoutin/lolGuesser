@@ -2,16 +2,3 @@ aatrox male top
 ahri female mid
 akali female mid
 akshan male mid
-alistar male support
-amumu male jungle
-anivia female mid
-annie female mid
-aphelios male bot
-ashe female bot
-aurelion_sol male mid
-azir male mid
-bard male support
-blitzcrank other support
-brand male support
-braum male support
-caitlyn female bot
