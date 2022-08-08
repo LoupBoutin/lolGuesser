@@ -38,6 +38,7 @@ public class Main extends Application {
 
     public static void main(String[] args) throws FileNotFoundException {
         Application.launch(args);
+
         System.out.println("finito");
     }
 
@@ -110,14 +111,7 @@ public class Main extends Application {
         return newList;
     }
 
-    /**
-     * Renvoie un String. -> si le scanner est bien dans la liste, alors on revoie le String scanner.
-     * Compare le scanner ( variable locale à la fonction ) et l'arrayList prit en paramètre.
-     * Prend en paramètre:
-     * ArrayList de String the List -> l'arrayList de champNameListString(ArraList Champion theList).
-     * @param theList
-     * @return
-     */
+    // ANCIENNE VERSION DE ISINTHELIST AVEC LE SCANNER DANS LE SHELL. NOUVELLE VERSION AVEC FXML DANS CONTROLLER.
     public static String isInTheList(ArrayList<String> theList) {
 
         Scanner sc = new Scanner(System.in);
