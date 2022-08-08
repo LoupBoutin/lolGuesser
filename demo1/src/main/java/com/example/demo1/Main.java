@@ -1,13 +1,14 @@
 package com.example.demo1;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -19,14 +20,16 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Main extends Application {
 
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
+    public void start(Stage stage) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("myDisplay.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
-        Image iconImage = new Image("file:src\\beemo.png");
+
+        Image iconImage = new Image("file:src\\main\\resources\\Image\\beemo.png");
         stage.getIcons().add(iconImage);
 
-        stage.setTitle("Lol guesser");
+        stage.setResizable(false);
+        stage.setTitle("Lol guessR");
         stage.setScene(scene);
         stage.show();
     }
@@ -34,46 +37,18 @@ public class Main extends Application {
     private static Random random = new Random();
 
     public static void main(String[] args) throws FileNotFoundException {
-        launch(args);
-
-        /*ArrayList<Champion> championsReadFromFile = new ArrayList<Champion>();
-        championsReadFromFile = readChampFromFile("src\\main\\java\\com\\example\\demo1\\champText.txt");
-        ArrayList<String> champNameList = champNameListString(championsReadFromFile);
-
-        //isInTheList(champNameListString(championsReadFromFile));
-
-        //getRandomItem(championsReadFromFile);
-
-        Champion aatrox = championsReadFromFile.get(0);
-        Champion ahri = championsReadFromFile.get(1);
-        Champion akali = championsReadFromFile.get(2);
-        Champion akshan = championsReadFromFile.get(3);
-
-
-        //System.out.println(scFindObject(isInTheList(champNameList), championsReadFromFile));
-
-        Champion actualChampion = scFindObject(isInTheList(champNameList), championsReadFromFile);
-        Champion guessChampion = getRandomItem(championsReadFromFile);
-
-        while (!winCondition(actualChampion, guessChampion)) {
-
-            if (actualChampion.getGender().equals(guessChampion.getGender())) {
-                System.out.println("Gender : Correct");
-            } else {
-                System.out.println("Gender : Incorrect");
-            }
-
-            if (actualChampion.getPosition().equals(guessChampion.getPosition())) {
-                System.out.println("Position : Correct");
-            } else {
-                System.out.println("Position : Incorrect");
-            }
-            actualChampion = scFindObject(isInTheList(champNameList), championsReadFromFile);
-        }*/
+        Application.launch(args);
         System.out.println("finito");
     }
-    //similitudes((scFindObject(isInTheList(champNameList), championsReadFromFile)), getRandomItem(championsReadFromFile));
 
+    /**
+     * renvoie la liste des Champions sous forme de arraylist de Champion.
+     * Prend en paramètre:
+     * String fileName -> le fichier texte qui va être lu contenant les caractéristiques des champions.
+     * @param fileName
+     * @return
+     * @throws FileNotFoundException
+     */
     public static ArrayList<Champion> readChampFromFile(String fileName) throws FileNotFoundException {
 
         File file = new File(fileName);
@@ -96,6 +71,15 @@ public class Main extends Application {
         return champList;
     }
 
+    /**
+     * utilisé pour connecter le scanner à mon arraylist<Champion> pour renvoyer le scanner sous forme de Champion.
+     * prend en paramètre:
+     * String name -> l'input String.
+     * ArrayList de Champion theList -> l'arrayList de readChampFromFile(String fileName).
+     * @param name
+     * @param theList
+     * @return
+     * */
     public static Champion scFindObject(String name, ArrayList<Champion> theList) {
 
         for (int index = 0; index < theList.size(); index++) {
@@ -107,6 +91,15 @@ public class Main extends Application {
         return theList.get(0);
     }
 
+    /**
+     * Renvoie une ArrayList de String contenant les noms des champions.
+     * Sert à comparer le scanner et tous les éléments de cette ArrayList de String pour savoir si le scanner est un
+     * champion valide. -> fonction isInTheList(ArrayList String theList).
+     * Prend en paramètre:
+     * ArrayList de Champion theList ->  l'arrayList de readChampFromFile(String fileName).
+     * @param theList
+     * @return
+     */
     public static ArrayList<String> champNameListString(ArrayList<Champion> theList) {
 
         ArrayList<String> newList = new ArrayList<String>();
@@ -117,6 +110,14 @@ public class Main extends Application {
         return newList;
     }
 
+    /**
+     * Renvoie un String. -> si le scanner est bien dans la liste, alors on revoie le String scanner.
+     * Compare le scanner ( variable locale à la fonction ) et l'arrayList prit en paramètre.
+     * Prend en paramètre:
+     * ArrayList de String the List -> l'arrayList de champNameListString(ArraList Champion theList).
+     * @param theList
+     * @return
+     */
     public static String isInTheList(ArrayList<String> theList) {
 
         Scanner sc = new Scanner(System.in);
@@ -130,12 +131,29 @@ public class Main extends Application {
         return input;
     }
 
+    /**
+     * Renvoie un objet Champion au HASARD.
+     * Prend en paramètre:
+     * ArrayList de Champion theList -> arrayList lu par readChampFromFile(String fileName).
+     * @param theList
+     * @return
+     */
     static Champion getRandomItem(ArrayList<Champion> theList) {
         int index = ThreadLocalRandom.current().nextInt(theList.size());
         // System.out.println(index + " " + theList.get(index).getName());
         return theList.get(index);
     }
 
+    /**
+     * Renvoie un boolean.
+     * Prend en paramètre:
+     * Un object Champion -> le scanner renvoyé par isInTheList(ArrayList String theList).
+     * scanner - isInTheList - champNameListString - readChampFromFile.
+     * Un object Champion guessChampion -> prit au hasard par la fonction getRandimItem.
+     * @param actualChampion
+     * @param guessChampion
+     * @return
+     */
     public static boolean winCondition(Champion actualChampion, Champion guessChampion) {
         if ((actualChampion.getName()).equals(guessChampion.getName())) {
             return true;
@@ -143,14 +161,21 @@ public class Main extends Application {
         return false;
     }
 
+    /**
+     * Renvoie rien
+     * Affiche si oui ou non le champion choisis possède des similitudes avec le champions à deviner.
+     * Prend en paramètre:
+     * Un object Champion actualChampion -> scFindObject.
+     * Un object Champion guessChampion -> getRandomItem.
+     * @param actualChampion
+     * @param guessChampion
+     */
     public static void similitudes(Champion actualChampion, Champion guessChampion) {
         if (actualChampion.getGender().equals(guessChampion.getGender())) {
             System.out.println("Gender : Correct");
         } else {
             System.out.println("Gender : Incorrect");
         }
-
-
         if (actualChampion.getPosition().equals(guessChampion.getPosition())) {
             System.out.println("Position : Correct");
         } else {
