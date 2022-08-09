@@ -67,11 +67,11 @@ public class Controller {
 
         if (event.getCode() == KeyCode.ENTER) {
             sc = myTextField.getText();
-            System.out.println(sc);
+            //System.out.println(sc);
 
             sc = myTextField.getText();
             if (champNameList.contains(sc)) {
-                System.out.println("c'est valide");
+                //System.out.println("c'est valide");
                 myText.setText(null);
                 Champion actualChampion = scFindObject(sc, championsReadFromFile); // renvoie le champion qui était dans myTextField.
                 nameOfActualChampText.setText(actualChampion.getName());
@@ -79,39 +79,39 @@ public class Controller {
                 positionOfActualChampText.setText(actualChampion.getPosition());
 
                 if (actualChampion.getName().equals(guessTheChamp.getName())) {
-                    System.out.println("Name : Correct");
+                    //System.out.println("Name : Correct");
                     similitude[0] = (actualChampion.getName());
                     nameText.setText(actualChampion.getName());
                     nameBoxOfAC.setBackground(Background.fill(Color.GREEN));
                     nameBox.setBackground(Background.fill(Color.GREEN));
                 } else {
-                    System.out.println("Name : Incorrect");
+                    //System.out.println("Name : Incorrect");
                     nameBoxOfAC.setBackground(Background.fill(Color.RED));
                 }
 
                 if (actualChampion.getGender().equals(guessTheChamp.getGender())) {
-                    System.out.println("Gender : Correct");
+                    //System.out.println("Gender : Correct");
                     similitude[1] = (actualChampion.getGender());
                     genderText.setText(actualChampion.getGender());
                     genderBoxOfAC.setBackground(Background.fill(Color.GREEN));
                     genderBox.setBackground(Background.fill(Color.GREEN));
                 } else {
-                    System.out.println("Gender : Incorrect");
+                    //System.out.println("Gender : Incorrect");
                     genderBoxOfAC.setBackground(Background.fill(Color.RED));
                 }
 
                 if (actualChampion.getPosition().equals(guessTheChamp.getPosition())) {
-                    System.out.println("Position : Correct");
+                    //System.out.println("Position : Correct");
                     similitude[2] = (actualChampion.getPosition());
                     positionText.setText(actualChampion.getPosition());
                     positionBoxOfAC.setBackground(Background.fill(Color.GREEN));
                     positionBox.setBackground(Background.fill(Color.GREEN));
                 } else {
-                    System.out.println("Position : Incorrect");
+                    //System.out.println("Position : Incorrect");
                     positionBoxOfAC.setBackground(Background.fill(Color.RED));
                 }
             } else {
-                System.out.println("c'est pas valide");
+                //System.out.println("c'est pas valide");
                 myText.setText("Invalid champion name");
             }
         }

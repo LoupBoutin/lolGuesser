@@ -33,7 +33,7 @@ public class Main extends Application {
     public static void main(String[] args) throws FileNotFoundException {
         Application.launch(args);
 
-        System.out.println("finito");
+       // System.out.println("finito");
     }
 
     /**
@@ -109,11 +109,11 @@ public class Main extends Application {
     public static String isInTheList(ArrayList<String> theList) {
 
         Scanner sc = new Scanner(System.in);
-        System.out.print("Type a champion name... ");
+        //System.out.print("Type a champion name... ");
         String input = sc.nextLine();
 
         while (!(theList.contains(input))) {
-            System.out.print("Type a valid champion name... ");
+            //System.out.print("Type a valid champion name... ");
             input = sc.nextLine();
         }
         return input;
@@ -158,7 +158,7 @@ public class Main extends Application {
      * @param actualChampion
      * @param guessChampion
      */
-    public static void similitudes(Champion actualChampion, Champion guessChampion) {
+   /* public static void similitudes(Champion actualChampion, Champion guessChampion) {
         if (actualChampion.getGender().equals(guessChampion.getGender())) {
             System.out.println("Gender : Correct");
         } else {
@@ -169,6 +169,6 @@ public class Main extends Application {
         } else {
             System.out.println("Position : Incorrect");
         }
-    }
+    }*/
 }
 
